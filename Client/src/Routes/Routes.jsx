@@ -5,6 +5,7 @@ import MianLayout from "../Layouts/MianLayout";
 import Products from "../Pages/Products";
 import ErrorPage from "../Pages/ErrorPage";
 import WishList from "../Pages/WishList";
+import ProductDetails from "../Pages/ProductDetails";
 
 
 
@@ -19,7 +20,6 @@ const router = createBrowserRouter([
             {
                 index: true,
                 Component: Home,
-                loader : ()=> fetch('Data/furnitureData.json'),
             },
 
             {
@@ -29,6 +29,10 @@ const router = createBrowserRouter([
             {
                 path:'/wishlist',
                 Component: WishList,
+            },
+            {
+                path: '/product/:id',
+                Component : ProductDetails
             }
         ]
     },

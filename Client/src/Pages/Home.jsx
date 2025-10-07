@@ -1,21 +1,26 @@
 import React from 'react';
-import { useLoaderData } from 'react-router';
+import { Link} from 'react-router';
 
 import ProductCard from '../components/ProductCard';
+import useProducts from '../Hooks/useProducts';
 
 const Home = () => {
-
-  
-  const products = useLoaderData();
+  // const products = useLoaderData()
+const {products, loading, error} = useProducts()
+// console.log(data);
+  const featuredProducts = products.slice(0, 6)
   console.log(products);
   // 
   
     return (
         <div className='w-10/12 mx-auto p-10 my-10'>
-          <h2 className='text-center mb-10 text-2xl font-bold'>My ALl {products.length} products</h2>  
+          <div className='flex justify-between items-center py-5 '>
+            <h1 className='text-2xl font-bold' >Featured products</h1>
+            <Link className='btn btn-outline' to={'/products'}>Visit all Products</Link>
+            </div> 
           <div className='grid xl:lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-20'>
             {
-              products.map(product => <ProductCard key={product.id} product={product}/>)
+              featuredProducts.map(product => <ProductCard key={product.id} product={product}/>)
             }
           </div>
         </div>
